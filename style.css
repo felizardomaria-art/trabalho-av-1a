@@ -1,0 +1,100 @@
+/* --- DESIGN SYSTEM & VARIÁVEIS --- */
+:root {
+    --primary-color: #e50914;
+    --bg-color: #141414;
+    --text-color: #ffffff;
+    --card-bg: #2f2f2f;
+    --radius: 8px;
+    --spacing: 1rem;
+    --transition: all 0.3s ease;
+}
+
+/* --- MODO ALTO CONTRASTE --- */
+body.high-contrast {
+    --primary-color: #ffff00;
+    --bg-color: #000000;
+    --text-color: #ffffff;
+    --card-bg: #000000;
+    border: 2px solid white;
+}
+
+/* --- RESET & BASE --- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: font-size 0.2s;
+}
+
+/* --- LAYOUT (MOBILE FIRST) --- */
+header {
+    padding: var(--spacing);
+    background: rgba(0,0,0,0.8);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* --- GRID DE FILMES (Edite aqui as colunas) --- */
+.movie-grid {
+    display: grid;
+    gap: var(--spacing);
+    padding: var(--spacing);
+    /* Mobile: 1 coluna */
+    grid-template-columns: repeat(1, 1fr);
+}
+
+@media (min-width: 768px) {
+    .movie-grid {
+        /* Tablet/Desktop: 3 ou 4 colunas */
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* --- COMPONENTES --- */
+.movie-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    overflow: hidden;
+    opacity: 0; /* Para Scroll Reveal */
+    transform: translateY(20px);
+    transition: var(--transition);
+}
+
+.movie-card.reveal {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.accordion-item {
+    border-bottom: 1px solid #444;
+    padding: var(--spacing);
+}
+
+.accordion-header {
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    background: none;
+    color: inherit;
+    border: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.accordion-content {
+    display: none;
+    padding: var(--spacing) 0;
+}
+
+.accordion-content.active {
+    display: block;
+}
